@@ -1,0 +1,21 @@
+<h1 class="text-center">Game</h1>
+
+<div class="wrapper">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Here is your grid</h3>
+        <%= @grid %>
+        <h3>What's your best shot?</h3>
+        <form action="/score" method="GET">
+          <div class="form-group">
+            <input type="text" class="form-control" name="attempt" placeholder="answer">
+            <input type="hidden" name="start_time" value="<%= @start_time %>">
+            <input type="hidden" name="grid" value="<%= @grid.join(' ') %>">
+          </div>
+          <input type="submit" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
