@@ -1,9 +1,13 @@
 require 'open-uri'
 require 'json'
 class GameController < ApplicationController
+
+  def difficulty
+  end
+
   def game
-    # @grid_size = params[:grid_size]
-    @grid = generate_grid(9)
+    @grid_size = params[:grid_size]
+    @grid = generate_grid(@grid_size.to_i)
     @start_time = Time.now
   end
 
@@ -61,6 +65,6 @@ class GameController < ApplicationController
   def get_translation(word)
     response = open("http://api.wordreference.com/0.8/80143/json/enfr/#{word.downcase}")
     json = JSON.parse(response.read.to_s)
-    json['term0']['PrincipalTranslations']['0']['FirstTranslation']['term'] unless json["Error"]
+    json['term0']['PrincipalTranslations']['0']['FirstTranslation']['term'] unless json["Error"] || json["Response"]
   end
 end
